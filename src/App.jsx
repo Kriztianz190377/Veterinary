@@ -1,39 +1,28 @@
-import { useState, useEffect } from 'react';
 
-import FormPx from "./components/FromPx";
 import Header from "./components/Header"
-import PatientList from "./components/PatientList";
+import Form from "./components/Form"
+import PatientList from "./components/PatientList"
+import { useEffect, useState } from "react"
 
 function App() {
+  const [patients, setPatients] = useState(()=>JSON.parse(localStorage.getItem('patients'))??[])
+  const [patient, setPatient] = useState({})
 
-  const [patients, setPatients] = useState([]);
-  const [patient, setPatient] = useState({});
-
-  useEffect(() => {
-    const getLS=()=>{
-      const patientsLS=JSON.parse(localStorage.getItem('patients')) ?? [];
-      setPatients(patientsLS);
-    }
-    getLS();
-
-  }, [])
 
   useEffect(() => {
-    localStorage.setItem('patients', JSON.stringify(patients));
-    
+    localStorage.setItem('patients', JSON.stringify(patients))
   }, [patients])
 
-  const removePatient = id => {
-    const patientsUpdate = patients.filter(patient => patient.id !== id);
-    setPatients(patientsUpdate);
+  const deletePatient = id => {
+    const patientUpdate = patients.filter(patient => patient.id !== id)
+    setPatients(patientUpdate)
   }
-
   return (
-    <div className="container mx-auto mt-20 " >
+    <div className="container mx-auto justify-between mt-20">
       <Header />
+      <div className="md:flex  mt-12">
 
-      <div className="mt-12 md:flex">
-        <FormPx
+        <Form
           patients={patients}
           setPatients={setPatients}
           patient={patient}
@@ -42,13 +31,11 @@ function App() {
         <PatientList
           patients={patients}
           setPatient={setPatient}
-          removePatient={removePatient}
-
-
+          deletePatient={deletePatient}
         />
       </div>
     </div>
   )
 }
 
-export default App;
+export default App

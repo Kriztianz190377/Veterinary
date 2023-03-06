@@ -1,12 +1,11 @@
-import React from 'react'
 
-const Error = ({children}) => {
-    return (
-        <div className="bg-red-700 text-white font-semibold uppercase 
-                    text-center py-3 mb-5 rounded-md text-xl">
-            {children}
-        </div>
-    )
+const Error = ({message}) => {
+  return (
+    <div className="bg-red-800 rounded-md mb-3">
+            <p className="text-white font-bold text-2xl text-center py-2  uppercase">
+            {message}</p>
+          </div>
+  )
 }
 
 export default Error

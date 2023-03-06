@@ -1,13 +1,15 @@
-;
+
+const Header = () => {
+  return (
+    <h1 className="font-black text-3xl text-center 
+                  md:text-5xl ">
+      <span className="text-indigo-600 block">Veterinary </span>
+      Patient Monitoring
+    </h1>
 
 
-function Header() {
 
-    return (
-        <h1 className='font-black text-5xl text-center tracking-wider md:w-2/3 mx-auto' >Patient Monitoring {' '}
-            <span className="text-indigo-600"> Veterinary</span>
-        </h1>
+  )
+}
 
-
-    )
-}; export default Header;
+export default Header;
